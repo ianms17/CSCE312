@@ -1,0 +1,29 @@
+// File: Xor.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Implementation of the Xor gate
+
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Xor.hdl
+
+/**
+ * Exclusive-or gate:
+ * out = not (a == b)
+ */
+
+CHIP Xor {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Not(in=b, out=nb);
+	Not(in=a, out=na);
+	And(a=a, b=nb, out=aAndNb);
+	And(a=na, b=b, out=bAndNa);
+	Or(a=aAndNb, b=bAndNa, out=out);
+}

@@ -1,0 +1,22 @@
+// File: Proposition3.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Proposition 3: The server can send an email if the router IP is static or if two ports are open.
+//		p = the server can send email
+//		q = router ip is static
+//		r = two ports are open
+//		out = (q and r) implies p, not(q and r) or p, (not(q) and not(r)) or p
+
+CHIP Proposition3 {
+	IN p, q, r;
+	OUT out;
+	
+	PARTS:
+	Not(in=q, out=nq);
+	Not(in=r, out=nr);
+	And(a=nq, b=nr, out=NqAndNr);
+	Or(a=NqAndNr, b=p, out=out);
+}

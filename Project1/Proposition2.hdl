@@ -1,0 +1,19 @@
+// File: Proposition2.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Proposition 2: If the operating system is installed then the server boots.
+//		p = OS is installed
+//		q = the server boots
+//		out = p implies q, not(p) or q
+
+CHIP Proposition2 {
+	IN p, q;
+	OUT out;
+	
+	PARTS:
+	Not(in=p, out=np);
+	Or(a=np, b=q, out=out);
+}

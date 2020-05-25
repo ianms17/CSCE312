@@ -1,0 +1,22 @@
+// File: Proposition4.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Proposition 4: If the server password is not secure, then the administrator cannot log in and cannot install the Apache software.
+//		p = server password is secure
+//		q = admin can log in
+//		r = admin can install apache
+//		out = p implies (q and r), not(p) or (q and r)
+
+CHIP Proposition4 {
+	IN p, q, r;
+	OUT out;
+	
+	PARTS:
+	Not(in=q, out=nq);
+	Not(in=r, out=nr);
+	And(a=nq, b=nr, out=NqAndNr);
+	Or(a=p, b=NqAndNr, out=out);
+}

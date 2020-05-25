@@ -1,0 +1,21 @@
+// File: Proposition1.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Proposition 1: The operating system is installed and the disk is not partitioned
+//		p = OS is installed
+//		q = disk is partitioned
+//		out = p and not(q)
+
+CHIP Proposition1 {
+	IN p, q;
+	OUT out;
+	
+	PARTS:
+	Not(in=q, out=nq);
+	And(a=p, b=nq, out=out);
+}
+
+

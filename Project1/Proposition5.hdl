@@ -1,0 +1,18 @@
+// File: Proposition5.hdl
+// Author: Ian Stephenson
+// Date: 01/30/2020
+// Section: 510
+// E-mail: ims43@tamu.edu 
+// Description:
+// 		Proposition 5: Either the Apache software is installed or PHP is installed
+//		p = apache is installed
+//		q = php is installed
+//		out = p xor q
+
+CHIP Proposition5 {
+	IN p, q;
+	OUT out;
+	
+	PARTS:
+	Xor(a=p, b=q, out=out);
+}
