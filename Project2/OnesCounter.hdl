@@ -1,0 +1,28 @@
+// File: ALU.hdl
+// Name: Ian Stephenson
+// Date: 2/11/2020
+// Section: 510
+// Email: ims43@tamu.edu
+// Description: Implementation of the Ones Counter
+
+/**
+ * A number of 1s counter outputs in binary, on two outputs, the number of
+ * 1s on a three-bit input.
+ * Example: input: 010 > 01,  input: 101 >  10, input: 000 > 00 
+ */
+
+CHIP OnesCounter{
+    IN a[3];
+    OUT out[2];
+
+    PARTS:
+	//Calculate carry bit, out[1]
+	And(a=a[0], b=a[1], out=c1);
+	And(a=a[0], b=a[2], out=c2);
+	And(a=a[1], b=a[2], out=c3);
+	Or(a=c1, b=c2, out=c4);
+	Or(a=c3, b=c4, out=out[1]);
+	
+	Xor(a=a[0], b=a[1], out=s1);
+	Xor(a=a[2], b=s1, out=out[0]);
+}

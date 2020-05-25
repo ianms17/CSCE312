@@ -1,0 +1,90 @@
+// File: LeftLogicBitshift.hdl
+// Name: Ian Stephenson
+// Date: 2/11/2020
+// Section: 510
+// Email: ims43@tamu.edu
+// Description: Implementation of left bitshifter
+
+/**
+ * Shift x left y bits, new bits are filled in with 0, you may not use any DFF or clocked chip in this implementation
+ * You may assume the maximum shift is 8-bit
+ */
+
+CHIP LeftLogicBitshift {
+    IN x[16], y[16];
+    OUT out[16];
+
+    PARTS:	
+	
+	// Shift 1 bit
+	Mux(b= false, a=x[0], sel=y[0], out=o1);
+	Mux(b=x[0], a=x[1], sel=y[0], out=o2);
+	Mux(b=x[1], a=x[2], sel=y[0], out=o3);
+	Mux(b=x[2], a=x[3], sel=y[0], out=o4);
+	Mux(b=x[3], a=x[4], sel=y[0], out=o5);
+	Mux(b=x[4], a=x[5], sel=y[0], out=o6);
+	Mux(b=x[5], a=x[6], sel=y[0], out=o7);
+	Mux(b=x[6], a=x[7], sel=y[0], out=o8);
+	Mux(b=x[7], a=x[8], sel=y[0], out=o9);
+	Mux(b=x[8], a=x[9], sel=y[0], out=o10);
+	Mux(b=x[9], a=x[10], sel=y[0], out=o11);
+	Mux(b=x[10], a=x[11], sel=y[0], out=o12);
+	Mux(b=x[11], a=x[12], sel=y[0], out=o13);
+	Mux(b=x[12], a=x[13], sel=y[0], out=o14);
+	Mux(b=x[13], a=x[14], sel=y[0], out=o15);
+	Mux(b=x[14], a=x[15], sel=y[0], out=o16);
+	
+	// Shift two bits
+	Mux(b=false, a=o1, sel=y[1], out=oo1);
+	Mux(b=false, a=o2, sel=y[1], out=oo2);
+	Mux(b=o1, a=o3, sel=y[1], out=oo3);
+	Mux(b=o2, a=o4, sel=y[1], out=oo4);
+	Mux(b=o3, a=o5, sel=y[1], out=oo5);
+	Mux(b=o4, a=o6, sel=y[1], out=oo6);
+	Mux(b=o5, a=o7, sel=y[1], out=oo7);
+	Mux(b=o6, a=o8, sel=y[1], out=oo8);
+	Mux(b=o7, a=o9, sel=y[1], out=oo9);
+	Mux(b=o8, a=o10, sel=y[1], out=oo10);
+	Mux(b=o9, a=o11, sel=y[1], out=oo11);
+	Mux(b=o10, a=o12, sel=y[1], out=oo12);
+	Mux(b=o11, a=o13, sel=y[1], out=oo13);
+	Mux(b=o12, a=o14, sel=y[1], out=oo14);
+	Mux(b=o13, a=o15, sel=y[1], out=oo15);
+	Mux(b=o14, a=o16, sel=y[1], out=oo16);
+	
+	// shift 4 bits
+	Mux(b=false, a=oo1, sel=y[2], out=ooo1);
+	Mux(b=false, a=oo2, sel=y[2], out=ooo2);
+	Mux(b=false, a=oo3, sel=y[2], out=ooo3);
+	Mux(b=false, a=oo4, sel=y[2], out=ooo4);
+	Mux(b=oo1, a=oo5, sel=y[2], out=ooo5);
+	Mux(b=oo2, a=oo6, sel=y[2], out=ooo6);
+	Mux(b=oo3, a=oo7, sel=y[2], out=ooo7);
+	Mux(b=oo4, a=oo8, sel=y[2], out=ooo8);
+	Mux(b=oo5, a=oo9, sel=y[2], out=ooo9);
+	Mux(b=oo6, a=oo10, sel=y[2], out=ooo10);
+	Mux(b=oo7, a=oo11, sel=y[2], out=ooo11);
+	Mux(b=oo8, a=oo12, sel=y[2], out=ooo12);
+	Mux(b=oo9, a=oo13, sel=y[2], out=ooo13);
+	Mux(b=oo10, a=oo14, sel=y[2], out=ooo14);
+	Mux(b=oo11, a=oo15, sel=y[2], out=ooo15);
+	Mux(b=oo12, a=oo16, sel=y[2], out=ooo16);
+	
+	// shift 8 bits
+	Mux(b=false, a=ooo1, sel=y[3], out=out[0]);
+	Mux(b=false, a=ooo2, sel=y[3], out=out[1]);
+	Mux(b=false, a=ooo3, sel=y[3], out=out[2]);
+	Mux(b=false, a=ooo4, sel=y[3], out=out[3]);
+	Mux(b=false, a=ooo5, sel=y[3], out=out[4]);
+	Mux(b=false, a=ooo6, sel=y[3], out=out[5]);
+	Mux(b=false, a=ooo7, sel=y[3], out=out[6]);
+	Mux(b=false, a=ooo8, sel=y[3], out=out[7]);
+	Mux(b=ooo1, a=ooo9, sel=y[3], out=out[8]);
+	Mux(b=ooo2, a=ooo10, sel=y[3], out=out[9]);
+	Mux(b=ooo3, a=ooo11, sel=y[3], out=out[10]);
+	Mux(b=ooo4, a=ooo12, sel=y[3], out=out[11]);
+	Mux(b=ooo5, a=ooo13, sel=y[3], out=out[12]);
+	Mux(b=ooo6, a=ooo14, sel=y[3], out=out[13]);
+	Mux(b=ooo7, a=ooo15, sel=y[3], out=out[14]);
+	Mux(b=ooo8, a=ooo16, sel=y[3], out=out[15]);
+}

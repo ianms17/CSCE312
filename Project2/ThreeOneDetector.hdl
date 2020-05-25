@@ -1,0 +1,43 @@
+// File: ALU.hdl
+// Name: Ian Stephenson
+// Date: 2/11/2020
+// Section: 510
+// Email: ims43@tamu.edu
+// Description: Implementation of the Three Ones Detector
+
+/**
+ * A three 1s detector detects three consecutive 1s in 8-bit input.
+ * Example: input: 00011101 > output: 1, input: 10101011 > output: 0, 
+ * input: 11110000 > output 1 etc.
+ */
+
+CHIP ThreeOneDetector{
+    IN a[8];
+    OUT out;
+
+    PARTS:
+	And(a=a[0], b=a[1], out=a1);
+	And(a=a1, b=a[2], out=a2);
+	
+	And(a=a[1], b=a[2], out=a3);
+	And(a=a3, b=a[3], out=a4);
+	
+	And(a=a[2], b=a[3], out=a5);
+	And(a=a5, b=a[4], out=a6);
+	
+	And(a=a[3], b=a[4], out=a7);
+	And(a=a7, b=a[5], out=a8);
+	
+	And(a=a[4], b=a[5], out=a9);
+	And(a=a9, b=a[6], out=a10);
+	
+	And(a=a[5], b=a[6], out=a11);
+	And(a=a11, b=a[7], out=a12);
+	
+	Or(a=a2, b=a4, out=or1);
+	Or(a=a6, b=a8, out=or2);
+	Or(a=a10, b=a12, out=or3);
+	
+	Or(a=or1, b=or2, out=or4);
+	Or(a=or3, b=or4, out=out);
+}
