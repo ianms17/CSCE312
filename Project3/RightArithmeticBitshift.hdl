@@ -1,0 +1,26 @@
+// File: RightArithmeticBitshift.hdl
+// Author: Ian Stephenson
+// Date: 02/20/2020
+// Section: 510 
+// E-mail: ims43@tamu.edu 
+// Description: implementation of the right arithmetic bit shifter
+
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/03/RightArithmeticBitshift.hdl
+
+/**
+ * Please read instruction in project document
+ * 
+ */
+
+CHIP RightArithmeticBitshift {
+    IN in, load, reset;
+    OUT out[4];
+
+    PARTS:
+   // Put you code here:
+
+   
+}

@@ -1,0 +1,34 @@
+// File: PC.hdl
+// Author: Ian Stephenson
+// Date: 02/20/2020
+// Section: 510 
+// E-mail: ims43@tamu.edu 
+// Description: implementation of the program counter
+
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/03/a/PC.hdl
+
+/**
+ * A 16-bit counter with load and reset control bits.
+ * if      (reset[t] == 1) out[t+1] = 0
+ * else if (load[t] == 1)  out[t+1] = in[t]
+ * else if (inc[t] == 1)   out[t+1] = out[t] + 1  (integer addition)
+ * else                    out[t+1] = out[t]
+ */
+
+CHIP PC {
+    IN in[16],load,inc,reset;
+    OUT out[16];
+
+    PARTS:
+	// check control bits, feed through muxes to get output
+	Mux16(a=out2, b=in, sel=load, out=out1);
+	Mux16(a=feed, b=incOut, sel=inc, out=out2);
+	Mux16(a=out1, b=false, sel=reset, out=out3);
+	
+	// increment program counter and store in register
+	Inc16(in=feed, out=incOut);
+	Register(in=out3, load=true, out=feed, out=out);
+}

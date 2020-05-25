@@ -1,0 +1,22 @@
+// File: fibonacci.hdl
+// Author: Ian Stephenson
+// Date: 02/20/2020
+// Section: 510 
+// E-mail: ims43@tamu.edu 
+// Description: implementation of the fibonacci sequence generator
+
+//Fibonacci Number Generator
+//Given two initial numbers f0 and f1, the sequence will be generated
+
+CHIP Fibonacci {
+	IN f0[16], enable1, msel, enable2, enable3, f1[16];
+	OUT out[16];
+
+	PARTS:
+	Mux16(a=f0, b=r3Feed, sel=msel, out=out1);
+	Register(in=out1, load=enable1, out=out2, out=addFeed);
+	Mux16(a=f1, b=out2, sel=msel, out=out3);
+	Register(in=out3, load=enable2, out=out4);
+	Add16(a=addFeed, b=out4, out=out5);
+	Register(in=out5, load=enable3, out=r3Feed, out=out);
+}
